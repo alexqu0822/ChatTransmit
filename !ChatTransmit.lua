@@ -45,7 +45,7 @@ local _TCType2Leader = {
 	["INSTANCE_CHAT"] = "INSTANCE_CHAT_LEADER",
 };
 function Private.SimulateChatMessage(ctype, sender, msg, GUID)
-	local MSG = "[T]" .. msg;
+	local MSG = ">T<" .. msg;
 	if Private.UnitIsGroupLeader(sender) then
 		ctype = _TCType2Leader[ctype] or ctype;
 	end
@@ -57,11 +57,17 @@ function Private.SimulateChatMessage(ctype, sender, msg, GUID)
 		end
 	end
 
+	if etype == "CHAT_MSG_RAID_WARNING" then
+		if RaidWarningFrame_OnEvent then
+			RaidWarningFrame_OnEvent(RaidWarningFrame, "CHAT_MSG_RAID_WARNING", msg);
+		end
+	end
+
 	-- WhisperPop自动忽略以[]开头的消息
 	local WhisperPop = _G.WhisperPop;
 	if WhisperPop then
 		if WhisperPop[etype] then
-			WhisperPop[etype](WhisperPop, msg, sender, "",   "",          sender,  "",    0,             0,            "",              nil,    1,      GUID, nil,        false, false, false);
+			WhisperPop[etype](WhisperPop, MSG, sender, "",   "",          sender,  "",    0,             0,            "",              nil,    1,      GUID, nil,        false, false, false);
 		end
 	end
 end

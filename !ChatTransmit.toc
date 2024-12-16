@@ -1,4 +1,4 @@
-## Interface: 30403
+## Interface: 40401
 ## Title: !ChatTransmit
 ## Title-zhCN: !ChatTransmit
 ## Title-zhTW: !ChatTransmit
@@ -12,6 +12,6 @@
 ## Author: |cff00ff00ALA|r
 ## Author-zhCN: |cff00ff00ALA|r
 ## Author-zhTW: |cff00ff00ALA|r
-## Version: 304r.240920
+## Version: 401r.241215
 
 main.xml
